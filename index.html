@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tirzepatida</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#d9568a">
+<meta name="theme-color" content="#d9568a" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d141d" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tirzepatida">
@@ -16,31 +17,36 @@
 :root{--bg:#fff5f8;--card:#fff;--ink:#3b2a36;--mute:#8d7585;--line:#f6e3ea;--acc:#d9568a;--acc2:#a78bfa;--soft:#fde9f1;--soft2:#f1ecfe;--warn:#c2410c;--bad:#be123c;--shadow:0 6px 20px rgba(217,86,138,.10)}
 @media(prefers-color-scheme:dark){:root{--bg:#1d141d;--card:#291d2a;--ink:#f8eaf1;--mute:#b9a0b0;--line:#3d2c3f;--acc:#f472b6;--acc2:#b9a5fb;--soft:#3a2437;--soft2:#2f2842;--warn:#fbbf24;--bad:#fb7185;--shadow:0 6px 20px rgba(0,0,0,.3)}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
 html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 ui-rounded,"SF Pro Rounded","Nunito",system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 100px)}
+.wrap{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 16px) max(16px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 104px) max(16px,env(safe-area-inset-left))}
 h1{font-size:22px;font-weight:800;margin:0 0 2px}
 .status{font-size:12px;color:var(--mute);margin-bottom:14px;min-height:16px}
 .card{background:var(--card);border-radius:24px;padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
 .card h2{font-size:13px;font-weight:700;color:var(--acc);margin:0 0 10px;letter-spacing:.03em}
 .hero{background:linear-gradient(135deg,#f472b6 0%,#c084fc 100%);color:#fff;border-radius:28px;padding:22px;margin-bottom:14px;box-shadow:0 10px 26px rgba(192,132,252,.35)}
 .hero h2{font-size:13px;font-weight:700;margin:0 0 8px;opacity:.9}
-.hero .big{font-size:34px;font-weight:800;line-height:1.1}
+.hero .big{font-size:clamp(26px,8.6vw,34px);font-weight:800;line-height:1.1}
 .hero .sub{color:rgba(255,255,255,.9);font-size:14px;margin-top:4px}
 .hero button{background:#fff;color:var(--acc);margin-top:16px}
 .big{font-size:30px;font-weight:800;line-height:1.1}
 .sub{color:var(--mute);font-size:14px;margin-top:4px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
 .stat{background:var(--card);border-radius:20px;padding:12px;box-shadow:var(--shadow);text-align:center}
-.stat b{display:block;font-size:18px;font-weight:800}.stat span{font-size:12px;color:var(--mute)}
-button{font:inherit;border:0;border-radius:999px;padding:13px 20px;cursor:pointer;background:var(--acc);color:#fff;font-weight:700}
+.stat b{display:block;font-size:18px;font-weight:800}.stat span{font-size:12px;line-height:1.25;color:var(--mute);display:block}
+button{touch-action:manipulation;font:inherit;border:0;border-radius:999px;padding:13px 20px;cursor:pointer;background:var(--acc);color:#fff;font-weight:700}
 button.sec{background:var(--soft);color:var(--acc)}
-button.ghost{background:none;color:var(--mute);padding:6px 10px;font-weight:600;font-size:15px}
+button.ghost{background:none;color:var(--mute);padding:0;min-width:44px;min-height:44px;font-weight:600;font-size:18px;line-height:1}
 button.full{width:100%}
 .row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+.r-mg>:first-child{flex:.8}.r-mg>:last-child{flex:1.4}
 label{display:block;font-size:13px;font-weight:600;color:var(--mute);margin:12px 0 5px}
-input,select{width:100%;font:inherit;padding:12px 14px;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+input,select{width:100%;min-height:48px;font:inherit;font-size:16px;padding:12px 14px;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);-webkit-appearance:none;appearance:none;margin:0}
+input[type=date]{display:block;text-align:left;line-height:1.2}
+input[type=date]::-webkit-date-and-time-value{text-align:left;min-height:1.2em}
+select{padding-right:38px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238d7585' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc)}
-textarea{width:100%;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;padding:12px 14px;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+textarea{width:100%;font:16px/1.4 ui-monospace,Menlo,Consolas,monospace;-webkit-appearance:none;appearance:none;padding:12px 14px;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
 .tabs{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 10px);max-width:496px;margin:0 auto;background:var(--card);border-radius:28px;display:flex;padding:6px;z-index:5;box-shadow:0 8px 28px rgba(217,86,138,.22)}
 .tabs button{flex:1;background:none;color:var(--mute);border-radius:22px;padding:8px 2px;font-size:11px;font-weight:700}
 .tabs button .ic{display:block;font-size:19px;line-height:1.25}
@@ -57,7 +63,7 @@ svg{width:100%;height:auto;display:block}
 .foot{font-size:12px;color:var(--mute);text-align:center;margin-top:18px}
 .fut{stroke-dasharray:6 5;opacity:.75}
 .calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.calhead b{font-size:17px;font-weight:800;text-transform:capitalize}
+.calhead b{font-size:17px;font-weight:800;display:inline-block}.calhead b::first-letter{text-transform:uppercase}
 .calhead button{background:var(--soft);color:var(--acc);width:38px;height:38px;padding:0;font-size:18px}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
 .cal .wd{font-size:11px;font-weight:700;color:var(--mute);padding:4px 0}
@@ -178,7 +184,7 @@ function viewInicio(){
     const dd=ed?ed.date:(doseDate||today()),selMg=ed?ed.mg:lastMg,selSite=ed?ed.site:nextSite();
     h+=`<div class="card"><h2>${ed?'Editar dose':'Nova dose'}</h2>
     <label>Data</label><input type="date" id="f-date" value="${dd}" max="${today()}">
-    <div class="row"><div><label>Dose (mg)</label><select id="f-mg">${MGS.map(m=>`<option value="${m}" ${m===selMg?'selected':''}>${mgf(m)} mg</option>`).join('')}</select></div>
+    <div class="row r-mg"><div><label>Dose (mg)</label><select id="f-mg">${MGS.map(m=>`<option value="${m}" ${m===selMg?'selected':''}>${mgf(m)} mg</option>`).join('')}</select></div>
     <div><label>Local</label><select id="f-site">${SITES.map(s=>`<option ${s===selSite?'selected':''}>${s}</option>`).join('')}</select></div></div>
     <label>Observação (opcional)</label><input type="text" id="f-note" maxlength="140" placeholder="Ex.: enjoo leve, caneta nova" value="${ed?esc(ed.note||''):''}">
     ${errMsg?`<div class="err">${esc(errMsg)}</div>`:''}
